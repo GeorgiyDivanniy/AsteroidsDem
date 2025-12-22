@@ -18,6 +18,7 @@ public class ProjectileFactory : IProjectileFactory
     {
         var bullet = _container.InstantiatePrefabForComponent<BulletView>(_bulletPrefab, position, Quaternion.identity, null);
         bullet.Launch(direction);
+        Debug.Log("Bullet created");
     }
 
     public void CreateBeam(Vector2 position, Vector2 direction)

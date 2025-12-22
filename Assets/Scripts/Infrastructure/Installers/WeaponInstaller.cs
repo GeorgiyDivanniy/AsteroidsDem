@@ -24,11 +24,10 @@ public class WeaponInstaller : MonoInstaller
 
         Container.Bind<BeamWeapon>()
             .AsSingle()
-            .WithArguments(shipView.ShootPoint, 3, 2f).WhenInjectedInto<IWeapon>();
+            .WithArguments(shipView.ShootPoint, 3, 2f);
 
         Container.Bind<IWeapon>()
-            .WithId("Beam").To<BeamWeapon>().
-            FromResolve().AsSingle();
+            .WithId("Beam").To<BeamWeapon>().FromResolve();
         
         Container.Bind<IChargeableWeapon>()
             .WithId("Beam")

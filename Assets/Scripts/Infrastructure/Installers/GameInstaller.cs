@@ -9,7 +9,6 @@ namespace Infrastructure
     {
         [Header("Scene references")]
         [SerializeField] private ShipHUDView shipHudView;
-        [SerializeField] private UFOView ufoView;
 
         public override void InstallBindings()
         {
@@ -19,9 +18,6 @@ namespace Infrastructure
             
             Container.BindInterfacesTo<ShipHUDViewModel>().AsSingle();
             Container.Bind<ViewModels.IHUDView>().To<ShipHUDView>().FromInstance(shipHudView);
-            
-            Container.Bind<IUFOFactory>().To<UFOFactory>().AsSingle().WithArguments(ufoView);
-
         }
     }
 }

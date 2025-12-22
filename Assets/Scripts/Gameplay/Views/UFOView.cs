@@ -1,11 +1,14 @@
 ﻿using System;
+using Infrastructure;
 using UnityEngine;
+using Zenject;
 
 namespace Views
 {
     public class UFOView: MonoBehaviour
     {
         [SerializeField] private PolygonCollider2D _collider;
+        
         public void Spawn(Transform  position)
         {
             GetComponent<Transform>().SetPositionAndRotation(position.position, position.rotation);

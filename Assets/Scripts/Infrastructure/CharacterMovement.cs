@@ -1,53 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
-public class CharacterMovement : MonoBehaviour, IMovable
+public class CharacterMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    private GameInput _controls;
+    private Vector2 _moveInput;
 
-    private Rigidbody2D rb;
-    private Vector2 moveInput;
-    private GameInput controls;
+    public event Action<Vector2> OnMoveInputChanged;
 
     private void Awake()
     {
-        controls = new GameInput();
+        _controls = new GameInput();
     }
 
     private void OnEnable()
     {
-        controls.Gameplay.Enable();
-        controls.Gameplay.Movement.performed += OnMovementPerformed;
-        controls.Gameplay.Movement.canceled += OnMovementPerformed;
+        _controls.Gameplay.Enable();
+        _controls.Gameplay.Movement.performed += OnMovementPerformed;
+        _controls.Gameplay.Movement.canceled += OnMovementPerformed;
     }
 
     private void OnDisable()
     {
-        controls.Gameplay.Disable();
-        controls.Gameplay.Movement.performed -= OnMovementPerformed;
-        controls.Gameplay.Movement.canceled -= OnMovementPerformed;
+        _controls.Gameplay.Movement.performed -= OnMovementPerformed;
+        _controls.Gameplay.Movement.canceled -= OnMovementPerformed;
+        _controls.Gameplay.Disable();
     }
 
-    private void OnMovementPerformed(InputAction.CallbackContext obj)
+    private void OnMovementPerformed(InputAction.CallbackContext ctx)
     {
-        moveInput = obj.ReadValue<Vector2>();
+        _moveInput = ctx.ReadValue<Vector2>();
+        OnMoveInputChanged?.Invoke(_moveInput);
     }
-
-    public void Move(Vector2 direction)
-    {
-        rb.velocity = direction * speed;
-    }
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-       Move(moveInput);
-    }
+    
+    public Vector2 GetCurrentInput() => _moveInput;
 }
+

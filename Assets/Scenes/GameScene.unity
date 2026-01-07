@@ -468,6 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388048777}
   - component: {fileID: 388048776}
+  - component: {fileID: 388048778}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -542,6 +543,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388048778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388048775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a86601701f24788bd867be71c59eb60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: {fileID: 11400000, guid: de864aecfcb7fe445983577edf93ec2a, type: 2}
 --- !u!1 &442054376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ufoView: {fileID: -5637927844496387050, guid: 3803fa854a509e740a64f62e6d17cde0, type: 3}
+  RewardConfig: {fileID: 11400000, guid: 60a34c2a903326e45a58e26b79f06c07, type: 2}
 --- !u!4 &603003134
 Transform:
   m_ObjectHideFlags: 0

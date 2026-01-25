@@ -9,11 +9,11 @@ namespace Views
     {
         [SerializeField] private PolygonCollider2D _collider;
         
-        public void Spawn(Transform  position)
+        /*public void Spawn(Transform  position)
         {
             GetComponent<Transform>().SetPositionAndRotation(position.position, position.rotation);
         }
-
+        */
         public void Awake()
         {
             _collider = GetComponent<PolygonCollider2D>();

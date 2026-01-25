@@ -4,6 +4,6 @@ namespace Infrastructure
 {
     public interface IUfoFactory
     {
-        void CreateUfo(Transform position);
+        void CreateUfo(Vector2 spawnPoint);
     }
 }

@@ -15,11 +15,14 @@ namespace Infrastructure
             _ufoPrefab = ufoPrefab;
         }
 
-        public void CreateUfo(Transform position)
+        public void CreateUfo(Vector2 position)
         {
-            var ufo = _container.InstantiatePrefabForComponent<UFOView>(_ufoPrefab, position);
-            ufo.Spawn(position);
-            Debug.Log($"ИНОПРИЩЕЛЕНцы created: {ufo}");
+            /*
+            var ufo = _container.InstantiatePrefabForComponent<UFOView>(_ufoPrefab, spawnPoint);
+            ufo.Spawn(spawnPoint);
+            */
+            Object.Instantiate(_ufoPrefab, new Vector3(position.x,position.y,0f), Quaternion.identity);
+            Debug.Log($"ИНОПРИЩЕЛЕНцы created:");
         }
     }
 }

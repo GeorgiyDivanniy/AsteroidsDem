@@ -16,7 +16,7 @@ namespace Infrastructure
             Container.Bind<IUfoFactory>().To<UfoFactory>().AsSingle().WithArguments(ufoView);
             Container.DeclareSignal<EnemySpawnRequestSignal>();
             Container.DeclareSignal<EnemyDestroyedSignal>();
-            Container.Bind<ISpawnPointProvider>().To<CameraSpawnPointProvider>().AsSingle();
+            Container.Bind<ISpawnPointProvider>().To<SpawnPointProvider>().AsSingle();
             Container.Bind<EnemySpawnSystem>().AsSingle();
             Container.BindSignal<EnemySpawnRequestSignal>()
                 .ToMethod<EnemySpawnSystem>(x =>x.OnSpawnRequested)

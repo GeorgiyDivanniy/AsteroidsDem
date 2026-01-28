@@ -13,13 +13,13 @@ namespace Infrastructure
 
         public void SpawnEnemy()
         {
-            _signalBus.Fire<EnemySpawnRequestSignal>();
+            //_signalBus.Fire<EnemySpawnRequestSignal>();
         }
 
         public void Tick()
         {
-            SpawnEnemy();
-            Debug.Log("Братки едут");
+            //SpawnEnemy();
+            //Debug.Log("Братки едут");
         }
     }
 }

@@ -1,5 +1,6 @@
 using Models;
 using Infrastructure;
+using Models.Pools;
 using UnityEngine;
 using Zenject;
 
@@ -9,12 +10,20 @@ public class WeaponInstaller : MonoInstaller
     [SerializeField] private ShipView shipView;
     [SerializeField] private BulletView bulletPrefab;
     [SerializeField] private BeamView beamPrefab;
+    
     public override void InstallBindings()
     {
-        Container.Bind<IProjectileFactory>()
+        var factory = new UniversalFactory();
+        factory.Register(new PoolProvider<BulletView>(Container, bulletPrefab,20));
+        factory.Register(new PoolProvider<BeamView>(Container, beamPrefab, 5));
+        
+        Container.Bind<UniversalFactory>().FromInstance(factory).AsSingle();
+        Container.Bind<ProjectileFactory>().AsSingle();
+        
+        /*Container.Bind<IProjectileFactory>()
             .To<ProjectileFactory>()
             .AsSingle()
-            .WithArguments(bulletPrefab, beamPrefab);
+            .WithArguments(bulletPrefab, beamPrefab);*/
         
         Container.Bind<IWeapon>()
             .WithId("Bullet")

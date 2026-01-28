@@ -1,6 +1,7 @@
 using UnityEngine;
+using Views;
 
-public class BeamView : MonoBehaviour
+public class BeamView : PoolableView
 {
     [SerializeField] private float _duration = 0.5f;
 

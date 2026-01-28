@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class BeamWeapon : IWeapon, IChargeableWeapon
 {
-    private readonly IProjectileFactory _factory;
     private readonly Transform _shootPoint;
     private readonly int _maxCharges;
     private readonly float _rechargeDelay;
@@ -17,9 +16,8 @@ public class BeamWeapon : IWeapon, IChargeableWeapon
 
     public event Action<int, int> OnChargeChanged; 
     public event Action<float> OnCooldownProgressChanged;
-    public BeamWeapon(IProjectileFactory factory, Transform shootPoint, int maxCharges, float rechargeDelay)
+    public BeamWeapon(Transform shootPoint, int maxCharges, float rechargeDelay)
     {
-        _factory = factory;
         _shootPoint = shootPoint;
         _maxCharges = maxCharges;
         _rechargeDelay = rechargeDelay;
@@ -28,11 +26,10 @@ public class BeamWeapon : IWeapon, IChargeableWeapon
 
     public void Fire()
     {
-        Debug.Log("ХУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУй");
         if (_currentCharges <= 0)
             return;
 
-        _factory.CreateBeam(_shootPoint.position, _shootPoint.up);
+        //_factory.CreateBeam(_shootPoint.position, _shootPoint.up);
         _currentCharges--;
         OnChargeChanged?.Invoke(_currentCharges, _maxCharges);
 

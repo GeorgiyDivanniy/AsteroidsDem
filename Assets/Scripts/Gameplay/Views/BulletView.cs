@@ -30,12 +30,13 @@ public class BulletView : PoolableView
         _timer -= Time.deltaTime;
         if (_timer <= 0f)
         {
-            OnReleaseRequested?.Invoke(this);
+            RequestRelease();
         }
     }
-
+/*
     public override void OnDespawned()
     {
         _rb.velocity = Vector2.zero;
     }
+    */
 }

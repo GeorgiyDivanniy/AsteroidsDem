@@ -29,11 +29,11 @@ public class WeaponInstaller : MonoInstaller
             .WithId("Bullet")
             .To<BulletWeapon>()
             .AsTransient()
-            .WithArguments(shipView.ShootPoint);
+            .WithArguments(shipView.ShootPoint.position);
 
         Container.Bind<BeamWeapon>()
             .AsSingle()
-            .WithArguments(shipView.ShootPoint, 3, 2f);
+            .WithArguments(shipView.ShootPoint.position, 3, 2f);
 
         Container.Bind<IWeapon>()
             .WithId("Beam").To<BeamWeapon>().FromResolve();

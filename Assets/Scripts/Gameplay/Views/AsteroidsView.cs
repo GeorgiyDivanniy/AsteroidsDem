@@ -1,11 +1,9 @@
-﻿using System;
-using Infrastructure;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Views
 {
-    public class UFOView: PoolableView
+    public class AsteroidsView:PoolableView
     {
         [SerializeField] private PolygonCollider2D _collider;
         
@@ -19,16 +17,16 @@ namespace Views
         }
         public void Launch(Vector2 direction)
         {
-        //    _rb.velocity = direction * _speed;
+            //    _rb.velocity = direction * _speed;
         }
         
         private void Update()
         {
-           // _timer -= Time.deltaTime;
-           // if (_timer <= 0f)
+            // _timer -= Time.deltaTime;
+            // if (_timer <= 0f)
             //{
-                RequestRelease();
-           // }
+            RequestRelease();
+            // }
         }
         
         public void OnCollisionEnter(Collision collision)

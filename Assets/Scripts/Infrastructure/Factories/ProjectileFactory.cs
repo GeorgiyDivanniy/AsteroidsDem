@@ -2,7 +2,7 @@ using Infrastructure;
 using UnityEngine;
 using Zenject;
 
-public class ProjectileFactory
+public class ProjectileFactory 
 {
     private readonly UniversalFactory _factory;
 

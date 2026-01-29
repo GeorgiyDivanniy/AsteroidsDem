@@ -31,14 +31,15 @@ namespace Models.Pools
             obj.transform.position = position;
             obj.gameObject.SetActive(true);
             obj.OnSpawned();
+            obj.OnReleaseRequested += view => Release((T)view);
 
             return obj;
         }
 
         public void Release(T obj)
         {
-            obj.OnDespawned();
-            obj.gameObject.SetActive(false);
+            obj.Despawn();
+            //obj.gameObject.SetActive(false);
             _pool.Push(obj);
         }
 

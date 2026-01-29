@@ -1,14 +1,12 @@
 using System;
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using Models;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BeamWeapon : IWeapon, IChargeableWeapon
 {
-    private readonly Transform _shootPoint;
+    private readonly ProjectileFactory _factory;
+    private readonly Vector3 _shootPoint;
     private readonly int _maxCharges;
     private readonly float _rechargeDelay;
     private int _currentCharges;
@@ -16,8 +14,9 @@ public class BeamWeapon : IWeapon, IChargeableWeapon
 
     public event Action<int, int> OnChargeChanged; 
     public event Action<float> OnCooldownProgressChanged;
-    public BeamWeapon(Transform shootPoint, int maxCharges, float rechargeDelay)
+    public BeamWeapon(ProjectileFactory factory, Vector3 shootPoint, int maxCharges, float rechargeDelay)
     {
+        _factory = factory;
         _shootPoint = shootPoint;
         _maxCharges = maxCharges;
         _rechargeDelay = rechargeDelay;
@@ -29,7 +28,7 @@ public class BeamWeapon : IWeapon, IChargeableWeapon
         if (_currentCharges <= 0)
             return;
 
-        //_factory.CreateBeam(_shootPoint.position, _shootPoint.up);
+        _factory.CreateBeam(_shootPoint);
         _currentCharges--;
         OnChargeChanged?.Invoke(_currentCharges, _maxCharges);
 
